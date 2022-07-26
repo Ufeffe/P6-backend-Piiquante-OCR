@@ -6,7 +6,6 @@ Steps to start the project:
  - clone repo from: https://github.com/OpenClassrooms-Student-Center/Web-Developer-P6.git
  - open a terminal 
  - cd frontend
- - npm init
  - npm start
  - open your browser on http://localhost:4200/
 
@@ -15,5 +14,5 @@ Steps to start the project:
 
  - open an other terminal
  - cd backend
- - npm init
+ - npm install
  - nodemon server
