@@ -1,6 +1,10 @@
 const Sauce = require('../models/Sauce')
 const fs = require('fs')
 
+// Initilisation des constantes pour la fonction like/dislike
+const USER_LIKE = 1
+const USER_DISLIKE = -1
+const USER_RESET = 0
 
 // Création d'une nouvelle sauce à partir d'un model
 exports.createSauce = (req, res, next) => {
@@ -88,20 +92,20 @@ exports.likeSauce = (req, res, next) => {
             const likeOption = req.body.like
 
             // Option like 
-            if (likeOption == 1) {
+            if (likeOption == USER_LIKE && !idIsPresent(userIdToAdd, sauce.usersLiked)) {
                 sauce.usersLiked.push(userIdToAdd)
                 sauce.likes++
             }
             // Option Dislike
-            if (likeOption == -1) {
+            if (likeOption == USER_DISLIKE && !idIsPresent(userIdToAdd, sauce.usersDisliked)) {
                 sauce.usersDisliked.push(userIdToAdd)
                 sauce.dislikes++
             }
             // Option neutre
-            if (likeOption == 0 && idIsPresent(userIdToAdd, sauce.usersDisliked)) {
+            if (likeOption == USER_RESET && idIsPresent(userIdToAdd, sauce.usersDisliked)) {
                 idToDelete(userIdToAdd, sauce.usersDisliked)
                 sauce.dislikes--
-            } else if (likeOption == 0 && idIsPresent(userIdToAdd, sauce.usersLiked)) {
+            } else if (likeOption == USER_RESET && idIsPresent(userIdToAdd, sauce.usersLiked)) {
                 idToDelete(userIdToAdd, sauce.usersLiked)
                 sauce.likes--
             }
