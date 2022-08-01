@@ -10,7 +10,7 @@ const userRoutes = require('./routes/user')
 const app = express()
 
 // Connexion à la bdd
-mongoose.connect('mongodb+srv://ufeffe:ccnGi8xJCYOhQpfS@cluster0.jbjjmjs.mongodb.net/?retryWrites=true&w=majority', {
+mongoose.connect(`mongodb+srv://${process.env.LOGBDD}:${process.env.MDPBDD}.jbjjmjs.mongodb.net/?retryWrites=true&w=majority`, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
